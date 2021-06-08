@@ -18,13 +18,13 @@
                 <a class="navbar-brand" href="{% url 'index' %}">About</a>
                 </div>
                 <ul class="nav navbar-nav">
-                   <li>Dummy</li>
+                   <li><a href="{% url 'movies' %}">Movies</a></li>
                    <li>Dummy</li>
                 </ul>
                 </div>
-                </nav>
+        </nav>
         <p>&nbsp;</p>
-        <div class="container text-center">
+        <div class="container">
         {% block content %}
         
         {% endblock content %}

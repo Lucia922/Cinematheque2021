@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class MovieGenre(models.Model):
     genrename=models.CharField(max_length=255)
-    genredescription=models.CharField(max_length=255, null=True, blank=True)
+    genredescription=models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.genrename
@@ -18,10 +18,12 @@ class Movie(models.Model):
     moviegenre=models.ForeignKey(MovieGenre, on_delete=models.DO_NOTHING)
     user=models.ForeignKey(User, on_delete=models.DO_NOTHING)
     entrydate=models.DateField()
-    directedby=models.CharField(max_length=255)
+    director=models.CharField(max_length=255, null=True, blank=True)
+    cast=models.CharField(max_length=255, null=True, blank=True)
     releasedate=models.DateField()
     runtime=models.CharField(max_length=255)
     languages=models.CharField(max_length=255)
+    about=models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.moviename
