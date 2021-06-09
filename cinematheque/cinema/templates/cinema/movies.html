@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Movies</h2>
+<h1 style='color:grey'>Movies</h1>
 
     {% for m in movie_list %}
-    {{ m.moviename }}
+     <p style='color:grey; font-size:18px;'><a href="{% url 'detail' id=m.id %}">{{ m.moviename }}</a></p> 
     {% endfor %}
 
 

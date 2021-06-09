@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Movie Detail</h2>
+<p>Name : {{ movie.moviename }}<br/>
+   Genre : {{ movie.moviegenre }}<br/>
+   Director : {{ movie.director }}<br/>
+   Cast : {{ movie.cast }}<br/>
+   Release date : {{ movie.releasedate}}<br/>
+   Runtime : {{ movie.runtime }}<br/>
+   Language : {{ movie.languages }}<br/>
+   About : {{ movie.about }}
+</p>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 style='color:grey'>Genres</h1>
+
+    {% for m in moviegenre_list %}
+    <p style='font-size:20px; color:grey'><em>{{ m.genrename }}</em></p>
+    <p style='font-size:15px; color:grey'>{{ m.genredescription}}</p>
+    {% endfor %}
+
+
+
+{% endblock %}
