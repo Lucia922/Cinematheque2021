@@ -1,11 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1 style='color:grey'>Reviews</h1>
-
+<table class='table'>
+    <tr style='color:grey; font-size:17px'>
+        <th>Titile</th>
+        <th>Movie</th>
+        <th>Added By</th>
+    </tr>
     {% for r in review_list %}
-     <p style='color:grey; font-size:18px;'>{{ r.reviewtitle }}</p> 
+    <tr style='color:grey; font-size:16px;'>
+        <td><a href="{% url 'reviewdetail' id=r.id %}">{{ r.reviewtitle }}</a></td> 
+        <td>{{ r.movie }}</td>
+        <td>{{ r.user }}</td>
+    </tr>
     {% endfor %}
+</table>
 
-
+    
 
 {% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 style='color:grey'>Review</h2>
+
+ <p style='color:grey; font-size:16px'>
+   Movie : {{review.movie}}<br/>
+   Review Date : {{review.reviewdate}} <br/>
+   Rating : {{review.reviewrating }} / 100 <br/>
+   Review : {{review.reviewtext }}
+ </p>
+
+ {% endblock %}

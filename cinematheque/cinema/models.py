@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+from embed_video.fields import EmbedVideoField
 # Create your models here.
+
 
 class MovieGenre(models.Model):
     genrename=models.CharField(max_length=255)
@@ -14,6 +17,7 @@ class MovieGenre(models.Model):
         verbose_name_plural='moviegenres'
 
 class Movie(models.Model):
+    video=EmbedVideoField(blank=True)
     moviename=models.CharField(max_length=255)
     moviegenre=models.ForeignKey(MovieGenre, on_delete=models.DO_NOTHING)
     user=models.ForeignKey(User, on_delete=models.DO_NOTHING)

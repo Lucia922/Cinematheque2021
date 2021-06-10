@@ -12,9 +12,6 @@ def movies(request):
 def moviedetail(request, id):
     movie=get_object_or_404(Movie, pk=id)
     return render(request, 'cinema/moviedetail.html', {'movie': movie})
-    
-
-
 
 def moviegenres(request):
     moviegenre_list=MovieGenre.objects.all()
