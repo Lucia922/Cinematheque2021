@@ -21,5 +21,10 @@ def reviews(request):
     review_list=Review.objects.all()
     return render(request, 'cinema/reviews.html', {'review_list': review_list})
 
+def reviewdetail(request, id):
+    review=get_object_or_404(Review, pk=id)
+    return render(request, 'cinema/reviewdetail.html', {'review': review})
+    
+    
 
 
