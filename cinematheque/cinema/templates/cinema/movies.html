@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load embed_video_tags %}
-<h1 style='color:grey'>Movies</h1>
+<h1 style='color:black'>Movies</h1>
 
     {% for m in movie_list %}
-     <p style='color:grey; font-size:18px;'><a href="{% url 'moviedetail' id=m.id %}">{{ m.moviename }}</a></p> 
+     <p style='color:black; font-size:18px;'><a href="{% url 'moviedetail' id=m.id %}">{{ m.moviename }}</a></p> 
     {% endfor %}
 
 
