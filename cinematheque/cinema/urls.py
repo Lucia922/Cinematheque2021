@@ -10,5 +10,7 @@ urlpatterns = [
     path('reviewdetail/<int:id>', views.reviewdetail, name='reviewdetail'),
     path('newmovie/', views.newmovie, name='newmovie'),
     path('newreview/', views.newreview, name='newreview'),
+    path('loginmessage/', views.loginmessage, name='loginmessage'),
+    path('logoutmessage/', views.logoutmessage, name='logoutmessage'),
 ]
 

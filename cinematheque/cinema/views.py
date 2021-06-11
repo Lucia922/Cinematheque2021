@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import MovieGenre, Movie, Review
 from .forms import MovieForm
 from .forms import ReviewForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -27,6 +28,7 @@ def reviewdetail(request, id):
     review=get_object_or_404(Review, pk=id)
     return render(request, 'cinema/reviewdetail.html', {'review': review})
 
+@login_required
 def newmovie(request):
     form=MovieForm
     if request.method=='POST':
@@ -39,6 +41,7 @@ def newmovie(request):
         form=MovieForm()
     return render(request, 'cinema/newmovie.html', {'form' : form})
 
+@login_required
 def newreview(request):
     form=ReviewForm
     if request.method=='POST':
@@ -51,7 +54,11 @@ def newreview(request):
         form=ReviewForm()
     return render(request, 'cinema/newreview.html', {'form' : form})
 
+def loginmessage(request):
+    return render(request, 'cinema/loginmessage.html')
 
+def logoutmessage(request):
+    return render(request, 'cinema/logoutmessage.html')
 
     
 
