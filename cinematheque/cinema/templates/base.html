@@ -7,17 +7,17 @@
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         
        
-    </head>
+    </head> 
     <body>
-        <div class='jumbotron text-center' style="background-color: rgb(129, 129, 63); color: rgb(247, 246, 229);">
+        <div class='jumbotron' style="background-color: white; color: black;">
             <h1>Cinematheque</h1>
         </div>
-        <nav class="navbar navbar-default"> 
-            <div class="container">
+        <nav class="navbar navbar-default" > 
+            <div class="container-fluid" style="background-color: rgb(236, 236, 236)">
                <div class="navbar-header">
                 <a class="navbar-brand" href="{% url 'index' %}">About</a>
                </div>
-               <ul class="nav navbar-nav" style='font-size:18px;'>
+               <ul class="nav navbar-nav" style='font-size:17px;'>
                 <li><a href="{% url 'movies' %}">Movies</a></li>
                 <li><a href="{% url 'moviegenres' %}">Genres</a></li>
                 <li><a href="{% url 'reviews' %}">Reviews</a></li>
