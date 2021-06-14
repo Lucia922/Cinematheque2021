@@ -133,7 +133,7 @@ class New_Review_Authentication_Test(TestCase):
     def setUp(self):
         self.test_user=User.objects.create_user(username='testuser1', password='zhopka#2016')
         self.genre=MovieGenre.objects.create(genrename='Comedy')
-        self.movie=Movie.objects.create(moviename='Playtime', entrydate='2021-06-11',releasedate='1966-03-15',moviegenre=self.genre,
+        self.movie=Movie.objects.create(moviename='Playtime', entrydate='2021-06-11', releasedate='1966-03-15',moviegenre=self.genre,
                                         user=self.test_user,)
         self.review=Review.objects.create(reviewtitle='French comedy masterpiece', user=self.test_user, movie=self.movie, reviewdate='2021-06-11',
                                           reviewrating='97',reviewtext='It happens to be one of those rare, supremely unique and utterly mind boggling examples of cinematic possibilities.')
@@ -141,5 +141,6 @@ class New_Review_Authentication_Test(TestCase):
         response=self.client.get(reverse('newreview'))
         self.assertRedirects(response, '/accounts/login/?next=/cinema/newreview/')
 
-# Ran 12 tests OK, don't understand why they ask to put movie's attribute.
+# Ran 12 tests OK, don't understand what this message means "django.db.utils.IntegrityError: null value in column "entrydate" of relation "movie" violates not-null constraint
+#DETAIL:  Failing row contains (2, Playtime, null, 1966-03-15, , , 2, 2, null, null, null, )."
 
