@@ -2,6 +2,9 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from  .models import MovieGenre, Movie, Review
 import datetime
+from .forms import MovieForm
+from .forms import ReviewForm
+from django.urls import reverse_lazy, reverse
 
 # Create your tests here.
 class MovieGenreTest(TestCase):
@@ -48,6 +51,95 @@ class ReviewTest(TestCase):
 
 #Ran 6 tests OK
 
+class NewMovieForm(TestCase):
+    #valid form data
+    def test_moviefrom(self):
+        data={ 'moviename': "Band of Outsiders",
+               'moviegenre': "Crime/Drama",
+               'user': "Jinhee",
+               'entrydate': "2021-6-08",
+               'director': "Jean-Luc Godard",
+               'Cast': "Jean-Luc Godard / Anna Karina / Sami Frey",
+               'releasedate': "1966-3-15",
+               'runtime': "1h 37m",
+               'languages': "English / French",
+               'about': "The film is an adaptation of the 1958 novel Fools' Gold by American author Dolores Hitchens."
+             }
 
+        form=MovieForm (data)
+        self.assertTrue(form.is_valid)
+   
+    def test_movieform_Invalid(self):
+        data={ 'moviename': "Band of Outsiders",
+               'moviegenre': "Crime/Drama",
+               'user': "Jinhee",
+               'entrydate': "2021-06-08",
+               'director': "Jean-Luc Godard",
+               'Cast': "Jean-Luc Godard / Anna Karina / Sami Frey",
+               'releasedate': "1966-03-15",
+               'runtime': "1h 37m",
+               'languages': "English / French",
+               'about': "The film is an adaptation of the 1958 novel Fools' Gold by American author Dolores Hitchens."
+             }
+ 
+        form=MovieForm (data)
+        self.assertTrue (form.is_valid)
 
+class NewReviewForm(TestCase):
+    #valid form data
+    def test_reviewform(self):
+        data={ 'reviewtitle': "A reverie of a gangster movie",
+               'user': "Jinhee",
+               'movie': "Band of Outsiders",
+               'reviewdate': "2021-6-10",
+               'reviewrating': "97",
+               'reviewtext': "It’s as if a French poet took an ordinary banal American crime novel and told it to us in terms of the romance and beauty."
+             }
+
+        form=ReviewForm (data)
+        self.assertTrue (form.is_valid)
+
+    def test_reviewform_Invalid(self):
+        data={ 'reviewtitle': "A reverie of a gangster movie",
+               'user': "Jinhee",
+               'movie': "Band of Outsiders",
+               'reviewdate': "2021-06-10",
+               'reviewrating': "97",
+               'reviewtext': "It’s as if a French poet took an ordinary banal American crime novel and told it to us in terms of the romance and beauty."
+             }
+
+        form=ReviewForm (data)
+        self.assertTrue (form.is_valid)
+
+# Ran 10 tests OK
+        
+class New_Movie_Authentication_Test(TestCase):
+    def setUp(self):
+        self.test_user=User.objects.create_user(username='testuser1', password='zhopka#2016')
+        self.genre=MovieGenre.objects.create(genrename='Comedy')
+        self.movie=Movie.objects.create(moviename='Playtime', moviegenre=self.genre, user=self.test_user, 
+                                        entrydate='2021-06-11', director='Jacqus Tati', 
+                                        cast='Jean-Luc Godard / Anna Karina / Sami Frey',
+                                        releasedate='1966-03-15', runtime='2h 4m', languages='French / English / German', 
+                                        about="The film is an adaptation of the 1958 novel Fools' Gold by American author Dolores Hitchens.")
+        
+    def test_redirect_if_not_logged_in(self):
+        response=self.client.get(reverse('newmovie'))
+        self.assertRedirects(response, '/accounts/login/?next=/cinema/newmovie/')
+
+# Ran 11 tests Ok
+
+class New_Review_Authentication_Test(TestCase):
+    def setUp(self):
+        self.test_user=User.objects.create_user(username='testuser1', password='zhopka#2016')
+        self.genre=MovieGenre.objects.create(genrename='Comedy')
+        self.movie=Movie.objects.create(moviename='Playtime', entrydate='2021-06-11',releasedate='1966-03-15',moviegenre=self.genre,
+                                        user=self.test_user,)
+        self.review=Review.objects.create(reviewtitle='French comedy masterpiece', user=self.test_user, movie=self.movie, reviewdate='2021-06-11',
+                                          reviewrating='97',reviewtext='It happens to be one of those rare, supremely unique and utterly mind boggling examples of cinematic possibilities.')
+    def test_redirect_if_not_logged_in(self):
+        response=self.client.get(reverse('newreview'))
+        self.assertRedirects(response, '/accounts/login/?next=/cinema/newreview/')
+
+# Ran 12 tests OK, don't understand why they ask to put movie's attribute.
 
