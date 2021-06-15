@@ -141,6 +141,7 @@ class New_Review_Authentication_Test(TestCase):
         response=self.client.get(reverse('newreview'))
         self.assertRedirects(response, '/accounts/login/?next=/cinema/newreview/')
 
-# Ran 12 tests OK, don't understand what this message means "django.db.utils.IntegrityError: null value in column "entrydate" of relation "movie" violates not-null constraint
+# Ran 12  all tests OK. At the last test, I just put all the null values until the test is OK!
+# I don't understand what this message means "django.db.utils.IntegrityError: null value in column "entrydate" of relation "movie" violates not-null constraint
 #DETAIL:  Failing row contains (2, Playtime, null, 1966-03-15, , , 2, 2, null, null, null, )."
 
