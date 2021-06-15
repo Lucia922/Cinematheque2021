@@ -17,7 +17,7 @@ class MovieGenre(models.Model):
         verbose_name_plural='moviegenres'
 
 class Movie(models.Model):
-    #Embed YouTube video is not working, couldn't figured out, need to work more!
+    #Embed YouTube video is not working, couldn't figure out, need to work more!
     video=EmbedVideoField(blank=True)
     moviename=models.CharField(max_length=255)
     moviegenre=models.ForeignKey(MovieGenre, on_delete=models.DO_NOTHING)
